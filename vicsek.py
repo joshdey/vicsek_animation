@@ -54,12 +54,15 @@ def animate(i, r0=r0, L=L):
  
     qv.set_offsets(pos)
     qv.set_UVC(cos, sin,orient)
-    return qv,
+    return qv,tree, dist, neigh
 
 st.title("Vicsek Model Animation in Python")
 st.markdown('#### Author: Josh')
 st.markdown('#### Date: 04/29/21')
+st.markdown("##### Code Based On: [Minimal Vicsek Model in Python by Francesco Turci](https://francescoturci.net/2020/06/19/minimal-vicsek-model-in-python/#:~:text=Minimal%20Vicsek%20model%20in%20Python%20June%2019%2C%202020,matter.%20It%20displays%20interesting%20features%2C%20such%20as%20swarming)")
+st.markdown('##### More information on parameters and Vicsek Model: [The Flocking Transition: A Review of The Vicsek Model](https://guava.physics.uiuc.edu/~nigel/courses/563/Essays_2017/PDF/Chatterjee.pdf)')
 st.markdown("*Please note - you can change the number of agents in the lattice by either changing the density of the agents in the lattice by modifying the ρ parameter or by directly inputting the number of agents in the N parameter in the sidebar. The default N takes the default density multiplied by the area of the lattice.*")
 with st.spinner("Running..."):
+    #anim, tree, dist, neigh = animate(200)
     ani = FuncAnimation(fig,animate,np.arange(1, 200),interval=1, blit=True)
 components.html(ani.to_jshtml(), height=1000)
